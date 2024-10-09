@@ -33,21 +33,22 @@ jobs:
       with:
         terraform_version: 1.6.5
         terraform_wrapper: false
-
+        
     - name: Configure Git Credentials
       run: |
         git config --local --remove-section http."https://github.com/"
-        git config --global url."https://${EDT_GITHUB_USER}:${EDT_GITHUB_ACCESS_TOKEN}@github.com/EDT-Partners-Tech".insteadOf "https://github.com/EDT-Partners-Tech"
+        git config --global url."https://${ACCANTECGITHUBUSER}:${ACCANTECGITHUBTOKEN}@github.com/acclemmerich".insteadOf "https://github.com/acclemmerich"
       env:
-        EDT_GITHUB_USER: ${{ secrets.EDT_GITHUB_USER }}
-        EDT_GITHUB_ACCESS_TOKEN: ${{ secrets.EDT_GITHUB_ACCESS_TOKEN }}
+        ACCANTECGITHUBUSER: ${{ secrets.ACCANTECGITHUBUSER }}
+        ACCANTECGITHUBTOKEN: ${{ secrets.ACCANTECGITHUBTOKEN }}
+
 
     - name: terraform init
       id: init
       run: |
         terraform init \
           -input=false \
-          -backend-config="bucket=terraform-ai-infra" \
+          -backend-config="saa-genai" \
           -backend-config="key=infra.tfstate" \
           -backend-config="region=us-west-2" \
           -backend-config="encrypt=true"
