@@ -21,7 +21,7 @@ jobs:
       id: "aws-credentialss"
       uses: aws-actions/configure-aws-credentials@v2
       with:
-        role-to-assume: ${{ secrets.EDT_ROLE_TO_ASSUME }}
+        role-to-assume: ${{ secrets.ACCANTEC_ROLE }}
         aws-region: us-west-2
     - uses: actions/checkout@v4
       with:
